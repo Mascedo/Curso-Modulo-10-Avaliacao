@@ -10,6 +10,10 @@ class veiculosService {
             throw new Error("Todos os campos são necessarios!")
         }
 
+        if(typeof nome !== "string" || nome.trim() === ""){
+            throw new Error("Nome precisa ser uma string!")
+        }
+
         const novoCliente = {nome}
         
         return await clientesRepository.criar(novoCliente)
@@ -18,6 +22,10 @@ class veiculosService {
     async atualizar(id, nome){
         if(!(id&&nome)){
             throw new Error("Todos campos são necessarios!")
+        }
+
+        if(typeof nome !== "string" || nome.trim() === ""){
+            throw new Error("Nome precisa ser uma string!")
         }
 
         const dadosAtualizados = {nome}
