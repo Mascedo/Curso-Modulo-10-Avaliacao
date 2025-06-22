@@ -23,6 +23,8 @@ API RESTful de um sistema CRUD para clientes, pistas e agendamentos
 
 GET /clientes → Mostra os clientes
 
+GET /clientes?page=1&limit=1 → Faz uma paginação da pesquisa mostrando a pagina e o limite dela
+
 POST /clientes → Cria um cliente
 
 PUT /clientes/:id → Atualiza um cliente
@@ -35,6 +37,8 @@ GET /clientes/:id → Busca um cliente por id
 
 GET /pistas → Mostra as pistas
 
+GET /pistas?page=1&limit=1 → Faz uma paginação da pesquisa mostrando a pagina e o limite dela
+
 POST /pistas → Cria uma pista
 
 PUT /pistas/:id → Atualiza uma pista
@@ -46,6 +50,8 @@ GET /pistas/:id → Busca uma pista por id
  Agendamentos(/agendamentos)
 
 GET /agendamentos → Mostra os agendamentos
+
+GET /agendamentos?page=1&limit=1 → Faz uma paginação da pesquisa mostrando a pagina e o limite dela
 
 POST /agendamentos → Cria um agendamento
 
