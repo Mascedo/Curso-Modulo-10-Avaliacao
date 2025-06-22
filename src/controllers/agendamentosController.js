@@ -2,7 +2,8 @@ const agendamentosService = require("../services/agendamentosService")
 
 exports.mostrarAgendamentos = async (req, res) => {
     try{
-        const agendamentos = await agendamentosService.mostrar()
+        const query = req.query
+        const agendamentos = await agendamentosService.mostrar(query)
         res.status(200).json(agendamentos)
     }catch(erro){
         res.status(500).json({erro: erro.message})

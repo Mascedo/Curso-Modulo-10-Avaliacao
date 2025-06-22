@@ -1,8 +1,28 @@
 const pistasRepository = require("../repositories/pistasRepository")
 
 class pistasService {
-    async mostrar(){
-        return await pistasRepository.mostrar()
+    async mostrar(query){
+        if(Object.keys(query).length === 0){//caso nao tenha query ele vai mostrar todos
+            return await pistasRepository.mostrar()
+        }
+        
+        const page = query.page
+
+        const limit = query.limit
+
+        if(page===undefined || limit===undefined){
+            throw new Error("O valor de page e limit devem existir!")
+        }
+
+        if((page*2%2!==0) ||(limit*2%2!==0)){//descobrir se page e limit são numeros atraves do uso de tecnicas nao convencionais de progamação
+            throw new Error("Page e limit tem que ser um numero!")
+        }
+
+        if(page<1 || limit<1){
+            throw new Error("Page e limit precisam ser um numero maior que zero!")
+        }
+
+        return await pistasRepository.mostrarPagina(page, limit)
     }
 
     async criar(nome){

@@ -2,7 +2,8 @@ const pistasService = require("../services/pistasService")
 
 exports.mostrarPistas = async (req, res) => {
     try{
-        const pistas = await pistasService.mostrar()
+        const query = req.query
+        const pistas = await pistasService.mostrar(query)//manda a query para o service
         res.status(200).json(pistas)
     }catch(erro){
         res.status(500).json({erro: erro.message})

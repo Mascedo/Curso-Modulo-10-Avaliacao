@@ -6,6 +6,12 @@ class pistaRepository {
         return await Pista.find()
     }
 
+    async mostrarPagina(page, limit){
+        const pistas = await Pista.find()//cria uma variavel com todas as pistas
+
+        return pistas.slice((page - 1) * limit, limit * page)//calcula o startIndex e endIndex
+    }
+
     async criar(pista){
         return  await Pista.create(pista)
     }

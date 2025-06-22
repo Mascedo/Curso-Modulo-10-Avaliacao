@@ -2,7 +2,8 @@ const clientesService = require("../services/clientesService")
 
 exports.mostrarClientes = async (req, res) => {
     try{
-        const clientes = await clientesService.mostrar()
+        const query = req.query
+        const clientes = await clientesService.mostrar(query)
         res.status(200).json(clientes)
     }catch(erro){
         res.status(500).json({erro: erro.message})

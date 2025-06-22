@@ -7,8 +7,28 @@ const { validarDisponibilidade } = require("../utils/validarDisponibilidade")
 const { criadorDedataHorario } = require("../utils/criadorDedataHorario")
 
 class agendamentosService {
-    async mostrar(){
-        return await agendamentosRepository.mostrar()
+    async mostrar(query){
+        if(Object.keys(query).length === 0){
+            return await agendamentosRepository.mostrar()
+        }
+
+        const page = query.page
+    
+        const limit = query.limit
+    
+        if(page===undefined || limit===undefined){
+            throw new Error("O valor de page e limit devem existir!")
+        }
+    
+        if((page*2%2!==0) ||(limit*2%2!==0)){
+            throw new Error("Page e limit tem que ser um numero!")
+        }
+    
+        if(page<1 || limit<1){
+            throw new Error("Page e limit precisam ser um numero maior que zero!")
+        }
+    
+        return await agendamentosRepository.mostrarPagina(page, limit)
     }
 
     async criar(data, horario, clienteID, pistaID){

@@ -6,6 +6,12 @@ class clienteRepository {
         return await Cliente.find()
     }
 
+    async mostrarPagina(page, limit){
+        const clientes = await Cliente.find()//cria uma variavel com todos os clientes
+
+        return clientes.slice((page - 1) * limit, limit * page)//calcula o startIndex e endIndex
+    }
+
     async criar(cliente){
         return  await Cliente.create(cliente)
     }
